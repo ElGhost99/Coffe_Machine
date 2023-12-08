@@ -10,17 +10,16 @@ def machine_has(water, milk, beans, cups_disposable,money):
 
 def buy(water, milk, beans, cups_disposable, money):
     coffee = input("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:\n")
-    cups_disposable -= 1
     if coffee == "back":
-        cups_disposable += 1
         pass
     elif coffee == "1":
         if water < 250 or beans <16:
-            print("Sorry, not enough water!")
+            print("Sorry, not enough water or milk!")
             return water, milk, beans, cups_disposable, money
         else:
             water -= 250
             beans -= 16
+            cups_disposable -= 1
             money += 4
     elif coffee == "2":
         if water < 350 or milk < 75 or beans < 20:
@@ -30,6 +29,7 @@ def buy(water, milk, beans, cups_disposable, money):
             water -= 350
             milk -= 75
             beans -= 20
+            cups_disposable -= 1
             money += 7
     elif coffee == "3":
         if water < 200 or milk < 100 or beans < 12:
@@ -39,6 +39,7 @@ def buy(water, milk, beans, cups_disposable, money):
             water -= 200
             milk -= 100
             beans -= 12
+            cups_disposable -= 1
             money += 6
     print("I have enough resources, making you a coffee!")
     return water, milk, beans, cups_disposable, money
@@ -63,7 +64,7 @@ def main():
     money = 550
 
     while True:
-        action = input("\nWrite action (buy, fill, take, remaining, exit)\n")
+        action = input("\nWrite action (buy, fill, take, remaining, exit):\n")
         if action == "buy":
             print("")
             water, milk, beans, cups_disposable, money = buy(water, milk, beans, cups_disposable, money)
